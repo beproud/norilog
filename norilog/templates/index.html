@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/style.css" type="text/css"/>
+    <title>乗りログ</title>
+</head>
+<body>
+
+    <h1>乗りログ</h1>
+
+    <form action="/save" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="start">出発</label><br/>
+                    <input id="start" type="text" name="start"/>
+                </td>
+                <td>
+                    <label for="finish">到着</label><br/>
+                    <input id="finish" type="text" name="finish"/>
+                </td>
+                <td>
+                    <br/>
+                    <button>追加</button>
+                </td>
+            </tr>
+            <tr>
+               <td colspan="3">
+                   <label for="memo">メモ</label>
+                   <textarea id="memo" name="memo"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <h3>乗り一覧</h3>
+    <table class="list">
+        <tr>
+            <th>出発</th>
+            <th>到着</th>
+            <th>日時</th>
+            <th>メモ</th>
+        </tr>
+        {% for ride in rides %}
+        <tr>
+            <td>{{ ride.start }}</td>
+            <td>{{ ride.finish }}</td>
+            <td>{{ ride.created_at}}</td>
+            <td>{{ ride.memo|nl2br }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
